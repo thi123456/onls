@@ -49,6 +49,6 @@ namespace ONLINESHOP.Model.Models
         [Required]
         public bool Status { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual IEnumerable<Product> Products { get; set; }
     }
 }

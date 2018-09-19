@@ -15,6 +15,6 @@ namespace ONLINESHOP.Model.Models
         [Column(TypeName = "nvarchar")]
         public string Name { get; set; }
 
-        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual IEnumerable<Menu> Menus { get; set; }
     }
 }

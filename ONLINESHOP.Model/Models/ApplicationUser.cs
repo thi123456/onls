@@ -26,7 +26,7 @@ namespace ONLINESHOP.Model.Models
             return userIdentity;
         }
 
-        public virtual ICollection<Order> Orders { set; get; }
+        public virtual IEnumerable<Order> Orders { set; get; }
        
     }
 }

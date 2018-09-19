@@ -19,6 +19,6 @@ namespace ONLINESHOP.Model.Models
         [MaxLength(50)]
         public string Type { get; set; }
 
-        public virtual ICollection<PostTag> PostTags { get; set; }
+        public virtual IEnumerable<PostTag> PostTags { get; set; }
     }
 }
