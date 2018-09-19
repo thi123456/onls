@@ -43,7 +43,7 @@ namespace ONLINESHOP.Model.Models
 
         public int? ViewCount { get; set; }
 
-        public string Tabs { get; set; }
+        public string Tags { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 
