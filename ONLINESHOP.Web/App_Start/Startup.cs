@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
@@ -20,10 +20,12 @@ using System.Web.Mvc;
 namespace ONLINESHOP.Web.App_Start
 {
     public partial class Startup
+
     {
         public void Configuration(IAppBuilder app)
         {
             ConfigAutofac(app);
+
             ConfigureAuth(app);
         }
 
@@ -52,7 +54,11 @@ namespace ONLINESHOP.Web.App_Start
                 .AsImplementedInterfaces().InstancePerDependency();
 
             // Services
-            builder.RegisterAssemblyTypes(typeof(PostCategoryService).Assembly)
+
+            builder.RegisterAssemblyTypes(typeof(PostCategoryService).Assembly);
+
+            builder.RegisterAssemblyTypes(typeof(ErrorService).Assembly)
+
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerDependency();
 

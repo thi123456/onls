@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -9,12 +8,19 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+  
     <script src="~/Assets/plugins/angular/angular.js"></script>
+    <script src="~/Assets/admin/app.js"></script>
 </head>
-<body ng-app>
-    <div> 
-       10+20= {{10+20}}
+<body ng-app="myModule">
+    <div ng-controller="thiController">
+      <div thi-directive></div>
+        <input type="number" ng-model="num"/>tttttttt:<input type="text" value="{{num}}"/>
+        <button ng-click="checkNumber(num)">Kiểm tra</button>
+      <br />{{message}}
     </div>
 
+    <div>
+    </div>
 </body>
 </html>

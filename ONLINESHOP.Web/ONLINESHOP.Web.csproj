@@ -208,6 +208,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductCategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -238,6 +239,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\admin\app.js" />
     <Content Include="Assets\plugins\angular\angular-csp.css" />
     <Content Include="Assets\plugins\angular\angular.js" />
     <Content Include="Assets\plugins\angular\angular.min.js" />
@@ -256,7 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\admin\" />
     <Folder Include="Assets\client\" />
   </ItemGroup>
   <ItemGroup>
