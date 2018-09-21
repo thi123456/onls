@@ -22,12 +22,12 @@ namespace ONLINESHOP.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, int page=1, int pageSize=1)
+        public HttpResponseMessage GetAll(HttpRequestMessage request,string filter, int page=1, int pageSize=1)
         {
             int total = 0;
             return CreateHttpResponse(request, () =>
             {
-                var model = _productCategoryService.GetMultiPaging(out total, page, pageSize);
+                var model = _productCategoryService.GetMultiPaging(filter,out total, page, pageSize);
                 var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
                 var paginationSet = new PaginationSet<ProductCategoryViewModel>()
                 {

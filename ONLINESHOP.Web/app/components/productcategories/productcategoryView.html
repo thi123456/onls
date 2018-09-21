@@ -25,6 +25,17 @@
         </div>
         <div class="box-body">
             <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="từ khóa" ng-model="filter"/>
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="Search()">Tìm kiếm</button>
+                        </span>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <tr>
@@ -38,22 +49,27 @@
                         <tr ng-repeat="item in productCategories">
                             <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
-                            
+
                             <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
                             <td>{{item.CreatedBy}}</td>
-                            
+
                             <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | statusFilter}}</span></td>
                             <td>
                                 <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-pencil">Thêm mới</i></button>
                                 <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash">Xóa</i></button>
                             </td>
                         </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">Trang:{{page}},Tổng số bản ghi:{{totalCount}}</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div><!-- /.box-body -->
         <div class="box-footer">
-            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="Search(page)" class="pull-right"></pager-directive>
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="loadProductCategory(page)" class="pull-right"></pager-directive>
 
         </div><!-- /.box-footer-->
     </div><!-- /.box -->

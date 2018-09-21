@@ -23,7 +23,7 @@ namespace ONLINESHOP.Service
 
         ProductCategory GetById(int id);
 
-        IQueryable<ProductCategory> GetMultiPaging( out int total, int page = 1, int pageSize = 5, string[] includes = null);
+        IQueryable<ProductCategory> GetMultiPaging(string filter, out int total, int page = 1, int pageSize = 5, string[] includes = null);
 
 
         void Save();
@@ -73,12 +73,12 @@ namespace ONLINESHOP.Service
             return _ProductCategoryRepository.SingleById(id);
         }
 
-        public IQueryable<ProductCategory> GetMultiPaging(out int total, int page = 1, int pageSize = 5, string[] includes = null)
+        public IQueryable<ProductCategory> GetMultiPaging(string filter,out int total, int page = 1, int pageSize = 5, string[] includes = null)
         {
            
-           // if(fillter==null)
+           if(string.IsNullOrEmpty(filter))
                 return _ProductCategoryRepository.GetMultiPaging(null,out total, page, pageSize, includes);
-           // return _ProductCategoryRepository.GetMultiPaging(fillter, out total, page, pageSize, includes);
+           return _ProductCategoryRepository.GetMultiPaging((x=>x.Name.Contains(filter) || x.Description.Contains(filter)), out total, page, pageSize, includes);
 
         }
 

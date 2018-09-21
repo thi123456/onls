@@ -12,13 +12,20 @@
         $scope.page = 1;
         $scope.pageCount = 0;
         $scope.totalCount = 0;
-
-        function Search(page) {
+        $scope.filter = '';
+        $scope.loadProductCategory = loadProductCategory;
+        
+        function Search()
+        {
+            loadProductCategory();
+        }
+        function loadProductCategory(page) {
 
             var config = {
                 params: {
+                    filter: $scope.filter,
                     page: page || 1,
-                    pageSize:1
+                    pageSize:2
                 }
             }
             apiService.get('/api/productcategory/getall', config, dataLoadCompleted, dataLoadFailed);
@@ -36,7 +43,7 @@
             console.log('load productcategory failed');
         }
 
-        $scope.Search(1);
+        $scope.loadProductCategory();
     }
 
 })(angular.module('onlineshop.productcategories'));
