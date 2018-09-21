@@ -262,6 +262,7 @@
     <Content Include="app\shared\directive\pagerDirective.js" />
     <Content Include="app\shared\filter\statusFilter.js" />
     <Content Include="app\shared\service\apiService.js" />
+    <Content Include="app\shared\service\notificationService.js" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
@@ -481,6 +482,10 @@
     <Content Include="Assets\plugins\slimScroll\examples\style.css" />
     <Content Include="Assets\plugins\slimScroll\jquery.slimscroll.js" />
     <Content Include="Assets\plugins\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="Assets\plugins\toastr\toastr.css" />
+    <Content Include="Assets\plugins\toastr\toastr.js" />
+    <Content Include="Assets\plugins\toastr\toastr.min.css" />
+    <Content Include="Assets\plugins\toastr\toastr.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -547,6 +552,13 @@
     <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\plugins\toastr\.bower.json" />
+    <Content Include="Assets\plugins\toastr\bower.json" />
+    <Content Include="Assets\plugins\toastr\LICENSE" />
+    <Content Include="Assets\plugins\toastr\README.md" />
+    <Content Include="Assets\plugins\toastr\toastr.js.map" />
+    <Content Include="Assets\plugins\toastr\toastr.less" />
+    <Content Include="Assets\plugins\toastr\toastr.scss" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
