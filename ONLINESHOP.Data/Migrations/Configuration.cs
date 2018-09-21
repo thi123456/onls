@@ -1,6 +1,7 @@
 ﻿namespace ONLINESHOP.Data.Migrations
 {
     using Model.Models;
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -26,22 +27,31 @@
                 new ProductCategory()
                 {
                     Name="Điện lạnh",
-                    Alias="dien-lanh"
+                    Alias="dien-lanh",
+                    Status=false,
+                     CreatedDate=DateTime.Now
                 },
                  new ProductCategory()
                 {
                      Name="Viễn thông",
-                     Alias="vien-thong"
+                     Alias="vien-thong",
+                     Status=false,
+                      CreatedDate=DateTime.Now
                 },
                   new ProductCategory()
                 {
                       Name="Đồ  gia dụng",
-                      Alias="do-gia-dung"
+                      Alias="do-gia-dung",
+                      Status=true,
+                       CreatedDate=DateTime.Now
                 },
                    new ProductCategory()
                 {
                        Name="Mỹ phẩmm",
-                       Alias="my-pham"
+                       Alias="my-pham",
+                       Status=true,
+                       CreatedDate=DateTime.Now
+                       
                 }
             };
                 context.ProductCategories.AddRange(listProductCategory);
