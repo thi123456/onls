@@ -209,22 +209,17 @@
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a ui-sref="products"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                            <li><a ui-sref="products_add"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                        </ul>
+                       
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="Javascript:void(0)">
                             <i class="fa fa-files-o"></i>
-                            <span>Layout Options</span>
+                            <span>Sản phẩm</span>
                             <span class="label label-primary pull-right">4</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                            <li><a ui-sref="productcategories"><i class="fa fa-circle-o"></i>Danh mục Sản phẩm</a></li>
+                            <li><a ui-sref="products"><i class="fa fa-circle-o"></i>Sản phẩm</a></li>
                         </ul>
                     </li>
                     <li>
@@ -541,12 +536,15 @@
     <script src="/Assets/plugins/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="/app/shared/module/onlineshop.common.js"></script>
+    <script src="/app/shared/service/apiService.js"></script>
     <script src="/app/components/products/productModule.js"></script>
+    <script src="/app/components/productcategories/productcategoryModule.js"></script>
     <script src="/app/app.js"></script>
    
     <script src="/app/components/products/productViewController.js"></script>
     <script src="/app/components/products/productAddController.js"></script>
     <script src="/app/components/products/productEditController.js"></script>
+    <script src="/app/components/productcategories/productcategoryViewController.js"></script>
     <script src="/app/components/home/homeController.js"></script>
 </body>
 </html>

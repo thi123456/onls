@@ -100,6 +100,10 @@
     <Compile Include="Migrations\201809191623056_updateColumnsTags.Designer.cs">
       <DependentUpon>201809191623056_updateColumnsTags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809201716356_updateParent.cs" />
+    <Compile Include="Migrations\201809201716356_updateParent.Designer.cs">
+      <DependentUpon>201809201716356_updateParent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ONLINESHOPDBCONTEXT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809191623056_updateColumnsTags.resx">
       <DependentUpon>201809191623056_updateColumnsTags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201716356_updateParent.resx">
+      <DependentUpon>201809201716356_updateParent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -85,11 +85,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="ApplicationRoleService.cs" />
-
     <Compile Include="ErrorService.cs" />
     <Compile Include="PostCategoryService.cs" />
+    <Compile Include="ProductCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

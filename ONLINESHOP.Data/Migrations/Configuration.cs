@@ -1,7 +1,7 @@
-namespace ONLINESHOP.Data.Migrations
+﻿namespace ONLINESHOP.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
+    using Model.Models;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -14,10 +14,39 @@ namespace ONLINESHOP.Data.Migrations
 
         protected override void Seed(ONLINESHOP.Data.ONLINESHOPDBCONTEXT context)
         {
-            //  This method will be called after migrating to the latest version.
+            CreateProductCategoryExample(context);
+        }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+        private void CreateProductCategoryExample(ONLINESHOP.Data.ONLINESHOPDBCONTEXT context)
+        {
+            if (context.ProductCategories.Count() == 0)
+            {
+                List<ProductCategory> listProductCategory = new List<ProductCategory>()
+            {
+                new ProductCategory()
+                {
+                    Name="Điện lạnh",
+                    Alias="dien-lanh"
+                },
+                 new ProductCategory()
+                {
+                     Name="Viễn thông",
+                     Alias="vien-thong"
+                },
+                  new ProductCategory()
+                {
+                      Name="Đồ  gia dụng",
+                      Alias="do-gia-dung"
+                },
+                   new ProductCategory()
+                {
+                       Name="Mỹ phẩmm",
+                       Alias="my-pham"
+                }
+            };
+                context.ProductCategories.AddRange(listProductCategory);
+                context.SaveChanges();
+            }
         }
     }
 }

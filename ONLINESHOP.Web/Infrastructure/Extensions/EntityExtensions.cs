@@ -32,7 +32,7 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             productCategory.Name = productCategoryVm.Name;
             productCategory.Description = productCategoryVm.Description;
             productCategory.Alias = productCategoryVm.Alias;
-            productCategory.PatentID = productCategoryVm.ParentID;
+            productCategory.ParentID = productCategoryVm.ParentID;
             productCategory.DisplayOrder = productCategoryVm.DisplayOrder;
             productCategory.Image = productCategoryVm.Image;
             productCategory.HomeFlag = productCategoryVm.HomeFlag;

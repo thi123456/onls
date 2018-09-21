@@ -18,7 +18,7 @@
           })
         
           .state('products_edit', {
-              url: "/products_edt",
+              url: "/products_edit",
               templateUrl: "/app/components/products/productEditView.html",
               controller: "productEditController"
           })

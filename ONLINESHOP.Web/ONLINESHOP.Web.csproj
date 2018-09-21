@@ -199,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -256,6 +257,7 @@
     <Content Include="app\components\products\productModule.js" />
     <Content Include="app\components\products\productView.html" />
     <Content Include="app\components\products\productViewController.js" />
+    <Content Include="app\shared\service\apiService.js" />
     <Content Include="Assets\admin\bootstrap\css\bootstrap.css" />
     <Content Include="Assets\admin\bootstrap\css\bootstrap.min.css" />
     <Content Include="Assets\admin\bootstrap\fonts\glyphicons-halflings-regular.svg" />

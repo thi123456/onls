@@ -21,7 +21,7 @@ namespace ONLINESHOP.Model.Models
 
         public string Description { get; set; }
 
-        public int? PatentID { get; set; }
+        public int? ParentID { get; set; }
 
         public int? DisplayOrder { get; set; }
 
