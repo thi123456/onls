@@ -1,0 +1,22 @@
+﻿
+<div>
+
+    <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">
+
+        <ul class="pagination pagination-sm">
+
+            <li><a ng-hide="page == 1" ng-click="search(1)" title="Trang đầu" style="cursor:pointer"><<</a></li>
+
+            <li><a ng-hide="page == 1" ng-click="search(+page-1)" title="Trang trước" style="cursor:pointer"><</a></li>
+
+            <li ng-repeat="n in range()" ng-class="{active: n == page}">
+
+                <a ng-click="search(n)" title="Trang {{n}}" style="cursor:pointer">{{n}}</a>
+            </li>
+
+            <li><a ng-hide="page == pagesCount" ng-if="page != pagesCount" ng-click="search(+page+1)" title="Trang sau" style="cursor:pointer">></a></li>
+
+            <li><a ng-hide="page == pagesCount" ng-click="search(pagesCount)" title="Trang cuối" style="cursor:pointer">>></a></li>
+        </ul>
+    </div>
+</div>

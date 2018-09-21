@@ -81,10 +81,10 @@ namespace ONLINESHOP.Data.Infrastructure
             return GetAll(includes).AsQueryable<T>().Where(pridicate);
         }
 
-        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> fillter, out int total, int page = 1, int pageSize = 5, string[] includes = null)
+        public virtual IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> fillter, out int total, int page = 1, int pageSize = 5, string[] includes = null)
         {
             int skipCount = (page - 1) * pageSize;
-            IQueryable<T> _resetSet;
+            IEnumerable<T> _resetSet;
 
             if (includes != null && includes.Count() > 0)
             {
@@ -95,7 +95,7 @@ namespace ONLINESHOP.Data.Infrastructure
             }
             else
             {
-                _resetSet = fillter != null ? dbSet.Where<T>(fillter).AsQueryable<T>() : dbSet.AsQueryable<T>();
+                _resetSet = fillter != null ? dbSet.Where<T>(fillter).AsQueryable() : dbSet.AsQueryable<T>();
             }
             total = _resetSet.Count();
             _resetSet = skipCount == 0 ? _resetSet.Take(pageSize) : _resetSet.Skip(skipCount).Take(pageSize);

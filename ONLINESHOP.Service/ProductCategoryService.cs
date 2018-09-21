@@ -2,6 +2,8 @@
 using ONLINESHOP.Data.Repositories;
 using ONLINESHOP.Model.Models;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace ONLINESHOP.Service
 {
@@ -20,6 +22,9 @@ namespace ONLINESHOP.Service
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
 
         ProductCategory GetById(int id);
+
+        IQueryable<ProductCategory> GetMultiPaging( out int total, int page = 1, int pageSize = 5, string[] includes = null);
+
 
         void Save();
     }
@@ -66,6 +71,15 @@ namespace ONLINESHOP.Service
         public ProductCategory GetById(int id)
         {
             return _ProductCategoryRepository.SingleById(id);
+        }
+
+        public IQueryable<ProductCategory> GetMultiPaging(out int total, int page = 1, int pageSize = 5, string[] includes = null)
+        {
+           
+           // if(fillter==null)
+                return _ProductCategoryRepository.GetMultiPaging(null,out total, page, pageSize, includes);
+           // return _ProductCategoryRepository.GetMultiPaging(fillter, out total, page, pageSize, includes);
+
         }
 
         public void Save()

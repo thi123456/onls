@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace ONLINESHOP.Data.Infrastructure
@@ -24,7 +25,7 @@ namespace ONLINESHOP.Data.Infrastructure
 
         IEnumerable<T> GetMulti(Expression<Func<T, bool>> pridicate, string[] includes = null);
 
-        IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> fillter, out int total, int page = 1, int pageSize = 5, string[] includes = null);
+        IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> fillter, out int total, int page = 1, int pageSize = 5, string[] includes = null);
 
         int Count(Expression<Func<T, bool>> where);
 
