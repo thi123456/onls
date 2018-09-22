@@ -26,7 +26,7 @@ namespace ONLINESHOP.Web.App_Start
         {
             ConfigAutofac(app);
 
-            ConfigureAuth(app);
+           // ConfigureAuth(app);
         }
 
         private void ConfigAutofac(IAppBuilder app)
@@ -35,23 +35,23 @@ namespace ONLINESHOP.Web.App_Start
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
+            builder.RegisterType<ONLINESHOPDBCONTEXT>().AsSelf().InstancePerRequest();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
+            builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
-            builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerDependency();
 
-            builder.RegisterType<ONLINESHOPDBCONTEXT>().AsSelf().InstancePerDependency();
 
             //Asp.net Identity
-            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerDependency();
-            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerDependency();
-            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerDependency();
-            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerDependency();
-            builder.Register(c => app.GetDataProtectionProvider()).InstancePerDependency();
+            //builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            //builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            //builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            //builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            //builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
-                .AsImplementedInterfaces().InstancePerDependency();
+                .AsImplementedInterfaces().InstancePerRequest();
 
             // Services
 
@@ -60,7 +60,7 @@ namespace ONLINESHOP.Web.App_Start
             builder.RegisterAssemblyTypes(typeof(ErrorService).Assembly)
 
                .Where(t => t.Name.EndsWith("Service"))
-               .AsImplementedInterfaces().InstancePerDependency();
+               .AsImplementedInterfaces().InstancePerRequest();
 
             Autofac.IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

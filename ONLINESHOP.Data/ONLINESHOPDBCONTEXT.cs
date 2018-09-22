@@ -47,10 +47,11 @@ namespace ONLINESHOP.Data
         public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
         public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
         public DbSet<ApplicationUserRole> ApplicationUserRoles { set; get; }
-      
+
 
         public static ONLINESHOPDBCONTEXT Create()
         {
+
             return new ONLINESHOPDBCONTEXT();
         }
 

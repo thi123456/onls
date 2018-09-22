@@ -26,9 +26,18 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             postCategory.Status = postCategoryVm.Status;
         }
 
-        public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryVm)
+        public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryVm, string action = "create")
         {
-            productCategory.ID = productCategoryVm.ID;
+            if (action == "update")
+            {
+                productCategory.UpdatedDate = DateTime.Now;
+                productCategory.UpdatedBy = productCategoryVm.UpdatedBy;
+            }
+            else
+            {
+                productCategory.CreatedDate = DateTime.Now;
+                productCategory.CreatedBy = productCategoryVm.CreatedBy;
+            }
             productCategory.Name = productCategoryVm.Name;
             productCategory.Description = productCategoryVm.Description;
             productCategory.Alias = productCategoryVm.Alias;
@@ -37,10 +46,6 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             productCategory.Image = productCategoryVm.Image;
             productCategory.HomeFlag = productCategoryVm.HomeFlag;
 
-            productCategory.CreatedDate = DateTime.Now;
-            productCategory.CreatedBy = productCategoryVm.CreatedBy;
-            productCategory.UpdatedDate = DateTime.Now;
-            productCategory.UpdatedBy = productCategoryVm.UpdatedBy;
             productCategory.MetaKeyword = productCategoryVm.MetaKeyword;
             productCategory.MetaDescription = productCategoryVm.MetaDescription;
             productCategory.Status = productCategoryVm.Status;
@@ -48,7 +53,7 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
 
         public static void UpdatePost(this Post post, PostViewModel postVm)
         {
-            post.ID = postVm.ID;
+           
             post.Name = postVm.Name;
             post.Description = postVm.Description;
             post.Alias = postVm.Alias;
@@ -69,7 +74,7 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
 
         public static void UpdateProduct(this Product product, ProductViewModel productVm)
         {
-            product.ID = productVm.ID;
+           
             product.Name = productVm.Name;
             product.Description = productVm.Description;
             product.Alias = productVm.Alias;

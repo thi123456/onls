@@ -18,7 +18,7 @@
           })
 
           .state('productcategories_edit', {
-              url: "/productcategoies_edit",
+              url: "/productcategoies_edit/:id",
               templateUrl: "/app/components/productcategories/productcategoryEditView.html",
               controller: "productcategoryEditController"
           })

@@ -59,6 +59,21 @@ namespace ONLINESHOP.Web.Api
             });
         }
 
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetByID(HttpRequestMessage request,int id)
+        {
+          
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetById(id);
+                var responData = Mapper.Map<ProductCategory,ProductCategoryViewModel>(model);
+               
+                var respon = request.CreateResponse(HttpStatusCode.OK, responData);
+                return respon;
+            });
+        }
+
         [Route("create")]
         [HttpPost]
         public HttpResponseMessage Create(HttpRequestMessage request,ProductCategoryViewModel productCategoryVieModel)
@@ -83,6 +98,30 @@ namespace ONLINESHOP.Web.Api
                
                 return respone;
 
+            });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request,ProductCategoryViewModel productCategoyViewModel)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if(ModelState.IsValid)
+                {
+                    var newProductCategory =_productCategoryService.GetById(productCategoyViewModel.ID) ;
+                    newProductCategory.UpdateProductCategory(productCategoyViewModel, "update");
+                    _productCategoryService.Update(newProductCategory);
+                    _productCategoryService.Save();
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                else
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                return response;
             });
         }
     }

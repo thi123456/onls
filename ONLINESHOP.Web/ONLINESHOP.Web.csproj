@@ -260,11 +260,14 @@
     <Content Include="app\components\products\productViewController.js" />
     <Content Include="app\shared\directive\pagerDirective.html" />
     <Content Include="app\shared\directive\pagerDirective.js" />
+    <Content Include="app\shared\filter\showFiter.js" />
     <Content Include="app\shared\filter\statusFilter.js" />
     <Content Include="app\shared\service\apiService.js" />
+    <Content Include="app\shared\service\commonService.js" />
     <Content Include="app\shared\service\notificationService.js" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
+    <Content Include="Assets\admin\css\customHasclass.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black.css" />
