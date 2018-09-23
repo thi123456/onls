@@ -26,7 +26,7 @@
         var name = '';
         function deleteMultiProductCategory() {
             var listId = [];
-           // var name = '';
+            name = '';
             angular.forEach($scope.Selected, function (item) {
                 listId.push(item.ID);
 
@@ -69,6 +69,8 @@
             }
             else {
                 $('#btnDelete').attr('disabled', 'disabled');
+                $("#all")[0].checked = false;
+                $scope.IsAll = false;
             }
         }, true);
 

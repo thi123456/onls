@@ -72,9 +72,19 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             post.Status = postVm.Status;
         }
 
-        public static void UpdateProduct(this Product product, ProductViewModel productVm)
+        public static void UpdateProduct(this Product product, ProductViewModel productVm,string action="create")
         {
-           
+            if (action == "update")
+            {
+                product.UpdatedDate = DateTime.Now;
+                product.UpdatedBy = productVm.UpdatedBy;
+            }
+            else
+            {
+                product.CreatedDate = DateTime.Now;
+                product.CreatedBy = productVm.CreatedBy;
+            }
+
             product.Name = productVm.Name;
             product.Description = productVm.Description;
             product.Alias = productVm.Alias;
@@ -89,10 +99,8 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             product.HotFlag = productVm.HotFlag;
             product.ViewCount = productVm.ViewCount;
 
-            product.CreatedDate = DateTime.Now;
-            product.CreatedBy = productVm.CreatedBy;
-            product.UpdatedDate = DateTime.Now;
-            product.UpdatedBy = productVm.UpdatedBy;
+           
+          
             product.MetaKeyword = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
             product.Status = productVm.Status;
