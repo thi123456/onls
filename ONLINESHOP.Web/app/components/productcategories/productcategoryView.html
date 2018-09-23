@@ -34,55 +34,48 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-success" ui-sref="productcategories_add">Thêm mới</button>
+                    <button type="button" class="btn btn-success" ui-sref="productcategories_add">Thêm mới</button>
+                    <button type="button" class="btn btn-danger" id="btnDelete" disabled ng-click="deleteMultiProductCategory()">Xóa</button>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-bordered">
                             <tr>
+                                <th><input type="checkbox" ng-click="SelectAll()" id="all" /></th>
                                 <th>ID</th>
                                 <th>Tên</th>
                                 <th>Tiêu đề seo</th>
                                 <th>danh mục cha</th>
-                             
-                               
+
                                 <th>Ngày tạo</th>
                                 <th>Người tạo</th>
                                 <th>Ngày sửa</th>
                                 <th>Người sửa</th>
                                 <th>STT</th>
 
-                              
                                 <th>Hiển thị</th>
                                 <th>Kích hoạt</th>
                                 <th>Thao tác</th>
-                                
-                              
                             </tr>
                             <tr ng-repeat="item in productCategories">
+                                <td><input type="checkbox" ng-model="item.checked"  class="uncheckall" /></td>
                                 <td>{{item.ID}}</td>
                                 <td>{{item.Name}}</td>
                                 <td>{{item.Alias}}</td>
                                 <td>{{item.ParentID}}</td>
-                             
-                              
 
                                 <td>{{item.CreatedDate | date:'dd/MM/yyyy'}}</td>
                                 <td>{{item.CreatedBy}}</td>
                                 <td>{{item.UpdatedDate | date:'dd/MM/yyyy'}}</td>
                                 <td>{{item.UpdatedBy}}</td>
                                 <td>{{item.DisplayOrder}}</td>
-                               
+
                                 <td><span ng-class="{'badge bg-red':(item.HomeFlag==false || item.HomeFlag==null ),'badge bg-green':item.HomeFlag==true}">{{item.HomeFlag | showFilter}}</span></td>
-                             
-
-
-
 
                                 <td><span ng-class="{'badge bg-red':item.Status==false ,'badge bg-green':item.Status==true}">{{item.Status | statusFilter}}</span></td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-primary" ui-sref="productcategories_edit({id:item.ID})"><i class="fa fa-pencil">Cập nhật</i></button>
-                                    <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash">Xóa</i></button>
+                                    <button type="button" class="btn btn-sm btn-danger" ng-click="deleteProductCategory(item.ID)"><i class="fa fa-trash">Xóa</i></button>
                                 </td>
                             </tr>
                             <tfoot>
@@ -98,5 +91,6 @@
                 <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="loadProductCategory(page)" class="pull-left"></pager-directive>
             </div><!-- /.box-footer-->
         </div><!-- /.box -->
+    </div>
 </section>
 <!-- /.content -->

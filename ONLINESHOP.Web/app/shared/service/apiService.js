@@ -9,7 +9,8 @@
         return {
             get: get,
             post: post,
-            put:put
+            put: put,
+            del:del
         }
 
         function get(url,params,success,failure) {
@@ -20,6 +21,9 @@
         }
         function put(url, params, success, failure) {
             $http.put(url, params).then(function (result) { success(result); }, function (error) { if (error.status === '401') notificationService.displayError('Lỗi chứng thực'); failure(error); });
+        }
+        function del(url, params, success, failure) {
+            $http.delete(url, params).then(function (result) { success(result); }, function (error) { if (error.status === '401') notificationService.displayError('Lỗi chứng thực'); failure(error); });
         }
     }
 

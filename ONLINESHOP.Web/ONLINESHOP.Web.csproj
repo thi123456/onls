@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -341,6 +343,8 @@
     <Content Include="Assets\plugins\angular\angular.js" />
     <Content Include="Assets\plugins\angular\angular.min.js" />
     <Content Include="Assets\plugins\angular\index.js" />
+    <Content Include="Assets\plugins\bootbox\.gitignore" />
+    <Content Include="Assets\plugins\bootbox\bootbox.js" />
     <Content Include="Assets\plugins\bootstrap\css\bootstrap.css" />
     <Content Include="Assets\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -465,6 +469,18 @@
     <Content Include="Assets\plugins\jquery\src\var\support.js" />
     <Content Include="Assets\plugins\jquery\src\var\toString.js" />
     <Content Include="Assets\plugins\jquery\src\wrap.js" />
+    <Content Include="Assets\plugins\ngBootbox\dist\ngBootbox.js" />
+    <Content Include="Assets\plugins\ngBootbox\dist\ngBootbox.min.js" />
+    <Content Include="Assets\plugins\ngBootbox\examples\example-1\app.js" />
+    <Content Include="Assets\plugins\ngBootbox\examples\example-1\custom-dialog.tpl.html" />
+    <Content Include="Assets\plugins\ngBootbox\examples\example-1\index.html" />
+    <Content Include="Assets\plugins\ngBootbox\examples\example-2\app.js" />
+    <Content Include="Assets\plugins\ngBootbox\examples\example-2\index.html" />
+    <Content Include="Assets\plugins\ngBootbox\examples\example-2\main.js" />
+    <Content Include="Assets\plugins\ngBootbox\examples\example-2\require.js" />
+    <Content Include="Assets\plugins\ngBootbox\examples\index.html" />
+    <Content Include="Assets\plugins\ngBootbox\gulpfile.js" />
+    <Content Include="Assets\plugins\ngBootbox\ngBootbox.js" />
     <Content Include="Assets\plugins\slimScroll\examples\allow-page-scroll.html" />
     <Content Include="Assets\plugins\slimScroll\examples\chaining.html" />
     <Content Include="Assets\plugins\slimScroll\examples\disable-fade-out.html" />
@@ -550,11 +566,6 @@
     <Content Include="Assets\plugins\jquery\external\sizzle\dist\sizzle.min.map" />
     <Content Include="Assets\plugins\jquery\README.md" />
     <Content Include="Assets\plugins\jquery\src\.eslintrc.json" />
-    <Content Include="Assets\plugins\bootstrap\css\bootstrap.css.map" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\plugins\toastr\.bower.json" />
     <Content Include="Assets\plugins\toastr\bower.json" />
     <Content Include="Assets\plugins\toastr\LICENSE" />
@@ -562,6 +573,25 @@
     <Content Include="Assets\plugins\toastr\toastr.js.map" />
     <Content Include="Assets\plugins\toastr\toastr.less" />
     <Content Include="Assets\plugins\toastr\toastr.scss" />
+    <Content Include="Assets\plugins\bootbox\.bower.json" />
+    <Content Include="Assets\plugins\bootbox\.jshintrc" />
+    <Content Include="Assets\plugins\bootbox\.npmignore" />
+    <Content Include="Assets\plugins\bootbox\.travis.yml" />
+    <Content Include="Assets\plugins\bootbox\bower.json" />
+    <Content Include="Assets\plugins\bootbox\CONTRIBUTING.md" />
+    <Content Include="Assets\plugins\bootbox\LICENSE.md" />
+    <Content Include="Assets\plugins\bootbox\package.json" />
+    <Content Include="Assets\plugins\bootbox\README.md" />
+    <Content Include="Assets\plugins\ngBootbox\.bower.json" />
+    <Content Include="Assets\plugins\ngBootbox\bower.json" />
+    <Content Include="Assets\plugins\ngBootbox\package.json" />
+    <Content Include="Assets\plugins\ngBootbox\README.md" />
+    <Content Include="Assets\plugins\ngBootbox\tsd.json" />
+    <Content Include="Assets\plugins\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
@@ -583,11 +613,20 @@
       <Name>ONLINESHOP.Service</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\tsd.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

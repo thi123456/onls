@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace ONLINESHOP.Web.Api
 {
@@ -26,13 +27,12 @@ namespace ONLINESHOP.Web.Api
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
-          
             return CreateHttpResponse(request, () =>
             {
                 var model = _productCategoryService.GetAll();
-                
+
                 var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
-               
+
                 var respon = request.CreateResponse(HttpStatusCode.OK, responData);
                 return respon;
             });
@@ -40,12 +40,12 @@ namespace ONLINESHOP.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request,string filter, int page=1, int pageSize=1)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string filter, int page = 1, int pageSize = 1)
         {
             int total = 0;
             return CreateHttpResponse(request, () =>
             {
-                var model = _productCategoryService.GetMultiPaging(filter,out total, page, pageSize);
+                var model = _productCategoryService.GetMultiPaging(filter, out total, page, pageSize);
                 var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
                 var paginationSet = new PaginationSet<ProductCategoryViewModel>()
                 {
@@ -61,14 +61,13 @@ namespace ONLINESHOP.Web.Api
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
-        public HttpResponseMessage GetByID(HttpRequestMessage request,int id)
+        public HttpResponseMessage GetByID(HttpRequestMessage request, int id)
         {
-          
             return CreateHttpResponse(request, () =>
             {
                 var model = _productCategoryService.GetById(id);
-                var responData = Mapper.Map<ProductCategory,ProductCategoryViewModel>(model);
-               
+                var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+
                 var respon = request.CreateResponse(HttpStatusCode.OK, responData);
                 return respon;
             });
@@ -76,13 +75,12 @@ namespace ONLINESHOP.Web.Api
 
         [Route("create")]
         [HttpPost]
-        public HttpResponseMessage Create(HttpRequestMessage request,ProductCategoryViewModel productCategoryVieModel)
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVieModel)
         {
             return CreateHttpResponse(request, () =>
             {
-
                 HttpResponseMessage respone = null;
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     var newProductCategory = new ProductCategory();
                     newProductCategory.UpdateProductCategory(productCategoryVieModel);
@@ -95,27 +93,77 @@ namespace ONLINESHOP.Web.Api
                 {
                     respone = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
-               
-                return respone;
 
+                return respone;
             });
         }
 
         [Route("update")]
         [HttpPut]
-        public HttpResponseMessage Update(HttpRequestMessage request,ProductCategoryViewModel productCategoyViewModel)
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoyViewModel)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    var newProductCategory =_productCategoryService.GetById(productCategoyViewModel.ID) ;
+                    var newProductCategory = _productCategoryService.GetById(productCategoyViewModel.ID);
                     newProductCategory.UpdateProductCategory(productCategoyViewModel, "update");
                     _productCategoryService.Update(newProductCategory);
                     _productCategoryService.Save();
                     var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                else
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                return response;
+            });
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (ModelState.IsValid)
+                {
+                    var oldProductCategory = _productCategoryService.Delete(id);
+
+                    _productCategoryService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, oldProductCategory);
+                }
+                else
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                return response;
+            });
+        }
+
+        [Route("deletemulti")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string listId)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (ModelState.IsValid)
+                {
+                    var list = new JavaScriptSerializer().Deserialize<IEnumerable<int>>(listId);
+                    foreach (int item in list)
+                    {
+                        _productCategoryService.DeleteV(item);
+                    }
+
+                    _productCategoryService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, list);
                 }
                 else
                 {

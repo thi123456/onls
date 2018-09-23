@@ -56,13 +56,22 @@ namespace ONLINESHOP.Data.Infrastructure
         {
             return dbSet.Remove(entity);
         }
-
+        public virtual void DeleteV(int id)
+        {
+            var entity = dbSet.Find(id);
+             dbSet.Remove(entity);
+        }
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
-            IEnumerable<T> objects = dbSet.Where<T>(where).AsQueryable();
+           
+                IEnumerable<T> objects = dbSet.Where<T>(where).AsQueryable();
+            
+         
             foreach (T item in objects)
                 dbSet.Remove(item);
         }
+
+     
 
         public virtual IEnumerable<T> GetAll(string[] includes = null)
         {
@@ -118,5 +127,7 @@ namespace ONLINESHOP.Data.Infrastructure
             dbSet.Attach(entity);
             dataContext.Entry(entity).State = EntityState.Modified;
         }
+
+      
     }
 }

@@ -15,6 +15,12 @@ namespace ONLINESHOP.Service
 
         ProductCategory Delete(int id);
 
+        void DeleteV(int id);
+
+        ProductCategory Delete(ProductCategory ProductCategory);
+
+      
+
         IEnumerable<ProductCategory> GetAll();
 
         IEnumerable<ProductCategory> GetAll(string keyword);
@@ -45,9 +51,20 @@ namespace ONLINESHOP.Service
             return _ProductCategoryRepository.Add(ProductCategory);
         }
 
+        public ProductCategory Delete(ProductCategory ProductCategory)
+        {
+            return _ProductCategoryRepository.Delete(ProductCategory);
+        }
+
         public ProductCategory Delete(int id)
         {
             return _ProductCategoryRepository.Delete(id);
+        }
+
+
+        public void DeleteV(int id)
+        {
+             _ProductCategoryRepository.DeleteV(id);
         }
 
         public IEnumerable<ProductCategory> GetAll()
