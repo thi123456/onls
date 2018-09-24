@@ -51,12 +51,14 @@
                     <label for="inputPassword3" class="col-sm-2 control-label">Hình ảnh</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="image" ng-model="Product.Image">
+                        <button type="button" class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Thêm Hình ảnh</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="moreimages" ng-model="Product.MoreImages">
+                        <button type="button" class="btn btn-default" ng-click="ChooseMoreImage()">Chọn ảnh</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -91,7 +93,12 @@
                 </div>
 
               
-
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Tags</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="tabs" ng-model="Product.Tags">
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">MetaKeyword</label>

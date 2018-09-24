@@ -52,6 +52,17 @@
             height: '200px'
         }
 
+        $scope.ChooseImage = function () {
+
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+
+                $scope.Product.Image = fileUrl;
+
+            };
+            finder.popup();
+        }
+
         loadparentCategory();
     }
 

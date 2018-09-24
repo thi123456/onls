@@ -1,4 +1,5 @@
-﻿using ONLINESHOP.Data.Infrastructure;
+﻿using ONLINESHOP.Common;
+using ONLINESHOP.Data.Infrastructure;
 using ONLINESHOP.Data.Repositories;
 using ONLINESHOP.Model.Models;
 using System;
@@ -44,21 +45,65 @@ namespace ONLINESHOP.Service
     {
         private IProductRepository _productRepository;
         private IUnitOfWork _unitOfWork;
-        private ProductCategoryService _productCategoryService;
-        public ProductService(IUnitOfWork unitOfWork,IProductRepository productRepository,ProductCategoryService productCategoryService)
+        private IProductCategoryService _productCategoryService;
+        private IProductTagRepository _productTagRepository;
+        private ITagRepository _tagRepository;
+        public ProductService(IUnitOfWork unitOfWork,IProductRepository productRepository,IProductCategoryService productCategoryService,IProductTagRepository productTagRepository,ITagRepository tagRepository)
         {
             this._unitOfWork = unitOfWork;
             this._productRepository = productRepository;
             this._productCategoryService = productCategoryService;
+            this._productTagRepository = productTagRepository;
+            this._tagRepository = tagRepository;
+        }
+
+        private void AddTag(Product OldProduct, Product NewProduct=null)
+        {
+          
+            
+                string[] tags = OldProduct.Tags.Split(',');
+                for (int i = 0; i < tags.Length; i++)
+                {
+                    var tagsId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(x => x.ID == tagsId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagsId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstant.ProductTag;
+                        _tagRepository.Add(tag);
+
+                        ProductTag productTag = new ProductTag();
+                    if(NewProduct!=null)
+                        productTag.ProductID = NewProduct.ID;
+                    else
+                        productTag.ProductID = OldProduct.ID;
+                    productTag.TagID = tagsId;
+                        _productTagRepository.Add(productTag);
+                    }
+
+                }
+                _unitOfWork.Commit();
+            
         }
 
         public Product Add(Product Product)
         {
-            return _productRepository.Add(Product);
+            var product= _productRepository.Add(Product);
+            _unitOfWork.Commit();
+            if (!string.IsNullOrEmpty(Product.Tags))
+                AddTag(Product,product);
+            return product;
         }
 
         public void Update(Product Product)
         {
+            if (!string.IsNullOrEmpty(Product.Tags))
+            {
+
+                AddTag(Product);
+
+            }
             _productRepository.Update(Product);
         }
 
