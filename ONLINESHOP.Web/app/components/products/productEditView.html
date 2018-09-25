@@ -57,7 +57,10 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Thêm Hình ảnh</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="moreimages" ng-model="Product.MoreImages">
+                        <ul class="list-inline">
+                            <li ng-repeat="img in moreImage"><img ng-src="{{img}}" width="100"/></li>
+                        </ul>
+
                         <button type="button" class="btn btn-default" ng-click="ChooseMoreImage()">Chọn ảnh</button>
                     </div>
                 </div>

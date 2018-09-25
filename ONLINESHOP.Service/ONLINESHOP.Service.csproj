@@ -85,12 +85,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationGroupService.cs" />
     <Compile Include="ApplicationRoleService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="PostCategoryService.cs" />
     <Compile Include="ProductCategoryService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ONLINESHOP.Common\ONLINESHOP.Common.csproj">
@@ -105,10 +110,6 @@
       <Project>{94ff80e5-d9f5-41f9-b7bb-d338e45a28f4}</Project>
       <Name>ONLINESHOP.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

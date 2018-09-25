@@ -11,5 +11,7 @@ namespace ONLINESHOP.Model.Models
 
         [StringLength(250)]
         public string Description { set; get; }
+
+       
     }
 }

@@ -12,12 +12,13 @@
         $scope.parentCategory = [];
         $scope.AddProduct = AddProduct;
         $scope.getSeoTitle = getSeoTitle;
+        $scope.moreImage = [];
         function getSeoTitle() {
 
             $scope.Product.Alias = commonService.getSeoTitle($scope.Product.Name);
         }
         function AddProduct() {
-
+            $scope.Product.MoreImages = JSON.stringify($scope.moreImage);
             apiService.post('/api/product/create', $scope.Product, dataLoadCompleted1, dataLoadFailed1);
         }
 
@@ -57,8 +58,27 @@
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
 
-                $scope.Product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.Product.Image = fileUrl;
+                });
+              
 
+            };
+            finder.popup();
+        }
+
+       
+
+
+        $scope.ChooseMoreImage = function () {
+
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImage.push(fileUrl);
+                });
+               
+              
             };
             finder.popup();
         }

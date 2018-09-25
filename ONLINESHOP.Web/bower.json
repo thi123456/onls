@@ -11,7 +11,10 @@
     "bootbox": "~4.4.0",
     "ngBootbox": "^0.2.0",
     "ckeditor": "4.10.1",
-    "ng-ckeditor": "0.2.1"
+    "ng-ckeditor": "0.2.1",
+    "angular-local-storage": "0.7.1",
+    "angular-loading-bar": "0.9.0",
+    "checklist-model": "1.0.0"
   },
   "resolutions": {
     "jquery": "3.3.1",

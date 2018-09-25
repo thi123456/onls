@@ -31,12 +31,10 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             if (action == "update")
             {
                 productCategory.UpdatedDate = DateTime.Now;
-                productCategory.UpdatedBy = productCategoryVm.UpdatedBy;
             }
             else
             {
                 productCategory.CreatedDate = DateTime.Now;
-                productCategory.CreatedBy = productCategoryVm.CreatedBy;
             }
             productCategory.Name = productCategoryVm.Name;
             productCategory.Description = productCategoryVm.Description;
@@ -53,7 +51,6 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
 
         public static void UpdatePost(this Post post, PostViewModel postVm)
         {
-           
             post.Name = postVm.Name;
             post.Description = postVm.Description;
             post.Alias = postVm.Alias;
@@ -72,17 +69,15 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             post.Status = postVm.Status;
         }
 
-        public static void UpdateProduct(this Product product, ProductViewModel productVm,string action="create")
+        public static void UpdateProduct(this Product product, ProductViewModel productVm, string action = "create")
         {
             if (action == "update")
             {
                 product.UpdatedDate = DateTime.Now;
-                product.UpdatedBy = productVm.UpdatedBy;
             }
             else
             {
                 product.CreatedDate = DateTime.Now;
-                product.CreatedBy = productVm.CreatedBy;
             }
 
             product.Name = productVm.Name;
@@ -99,8 +94,6 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
             product.HotFlag = productVm.HotFlag;
             product.ViewCount = productVm.ViewCount;
 
-           
-          
             product.MetaKeyword = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
             product.Status = productVm.Status;
@@ -133,23 +126,25 @@ namespace ONLINESHOP.Web.Infrastructure.Extensions
 
         public static void UpdateApplicationGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupViewModel)
         {
-            appGroup.ID = appGroupViewModel.ID;
+           
             appGroup.Name = appGroupViewModel.Name;
+            
         }
 
         public static void UpdateApplicationRole(this ApplicationRole appRole, ApplicationRoleViewModel appRoleViewModel, string action = "add")
         {
-            if (action == "update")
-                appRole.Id = appRoleViewModel.Id;
-            else
-                appRole.Id = Guid.NewGuid().ToString();
+            if (action == "add")
+               appRole.Id = Guid.NewGuid().ToString();
+
             appRole.Name = appRoleViewModel.Name;
             appRole.Description = appRoleViewModel.Description;
         }
 
         public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
         {
-            appUser.Id = appUserViewModel.Id;
+            if (action == "add")
+                appUser.Id = Guid.NewGuid().ToString();
+
             appUser.FullName = appUserViewModel.FullName;
             appUser.BirthDay = appUserViewModel.BirthDay;
             appUser.Email = appUserViewModel.Email;

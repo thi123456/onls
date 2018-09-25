@@ -24,7 +24,7 @@ namespace ONLINESHOP.Model.Models
         [Column(TypeName = "nvarchar"), MaxLength(256)]
         public string Image { get; set; }
 
-        [Column(TypeName = "XML")]
+        [Column(TypeName = "xml")]
         public string MoreImages { get; set; }
 
         public decimal Price { get; set; }

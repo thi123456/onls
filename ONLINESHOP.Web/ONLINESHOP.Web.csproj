@@ -204,7 +204,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\ApplicationGroupController.cs" />
+    <Compile Include="Api\ApplicationRoleController.cs" />
+    <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -249,8 +251,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\applicationroles\applicationroleAddController.js" />
+    <Content Include="app\components\applicationroles\applicationroleAddView.html" />
+    <Content Include="app\components\applicationroles\applicationroleEditController.js" />
+    <Content Include="app\components\applicationroles\applicationroleEditView.html" />
+    <Content Include="app\components\applicationroles\applicationroleModule.js" />
+    <Content Include="app\components\applicationroles\applicationroleView.html" />
+    <Content Include="app\components\applicationroles\applicationroleViewController.js" />
+    <Content Include="app\components\applicationgroups\applicationgroupEditView.html" />
+    <Content Include="app\components\applicationgroups\applicationgroupAddController.js" />
+    <Content Include="app\components\applicationgroups\applicationgroupAddView.html" />
+    <Content Include="app\components\applicationgroups\applicationgroupEditController.js" />
+    <Content Include="app\components\applicationgroups\applicationgroupModule.js" />
+    <Content Include="app\components\applicationgroups\applicationgroupView.html" />
+    <Content Include="app\components\applicationgroups\applicationgroupViewController.js" />
+    <Content Include="app\components\applicationusers\applicationuserAddController.js" />
+    <Content Include="app\components\applicationusers\applicationuserAddView.html" />
+    <Content Include="app\components\applicationusers\applicationuserEditController.js" />
+    <Content Include="app\components\applicationusers\applicationuserEditView.html" />
+    <Content Include="app\components\applicationusers\applicationuserModule.js" />
+    <Content Include="app\components\applicationusers\applicationuserView.html" />
+    <Content Include="app\components\applicationusers\applicationuserViewController.js" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\components\home\rootController.js" />
+    <Content Include="app\components\login\loginController.js" />
+    <Content Include="app\components\login\loginView.html" />
     <Content Include="app\components\productcategories\productcategoryAddView.html" />
     <Content Include="app\components\productcategories\productcategoryAddController.js" />
     <Content Include="app\components\productcategories\productcategoryEditController.js" />
@@ -270,8 +296,12 @@
     <Content Include="app\shared\filter\showFiter.js" />
     <Content Include="app\shared\filter\statusFilter.js" />
     <Content Include="app\shared\service\apiService.js" />
+    <Content Include="app\shared\service\authData.js" />
+    <Content Include="app\shared\service\authenticationService.js" />
     <Content Include="app\shared\service\commonService.js" />
+    <Content Include="app\shared\service\loginService.js" />
     <Content Include="app\shared\service\notificationService.js" />
+    <Content Include="app\shared\views\baseView.html" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
     <Content Include="Assets\admin\css\customHasclass.css" />
@@ -301,6 +331,7 @@
     <Content Include="Assets\admin\css\skins\skin-yellow.min.css" />
     <Content Include="Assets\admin\css\skins\_all-skins.css" />
     <Content Include="Assets\admin\css\skins\_all-skins.min.css" />
+    <Content Include="Assets\admin\img\Admin.jpg" />
     <Content Include="Assets\admin\img\avatar.png" />
     <Content Include="Assets\admin\img\avatar04.png" />
     <Content Include="Assets\admin\img\avatar2.png" />
@@ -334,6 +365,22 @@
     <Content Include="Assets\admin\js\demo.js" />
     <Content Include="Assets\admin\js\pages\dashboard.js" />
     <Content Include="Assets\admin\js\pages\dashboard2.js" />
+    <Content Include="Assets\plugins\angular-loading-bar\build\loading-bar.css" />
+    <Content Include="Assets\plugins\angular-loading-bar\build\loading-bar.js" />
+    <Content Include="Assets\plugins\angular-loading-bar\build\loading-bar.min.css" />
+    <Content Include="Assets\plugins\angular-loading-bar\build\loading-bar.min.js" />
+    <Content Include="Assets\plugins\angular-loading-bar\Gruntfile.js" />
+    <Content Include="Assets\plugins\angular-loading-bar\index.js" />
+    <Content Include="Assets\plugins\angular-loading-bar\src\loading-bar.css" />
+    <Content Include="Assets\plugins\angular-loading-bar\src\loading-bar.js" />
+    <Content Include="Assets\plugins\angular-local-storage\.gitattributes" />
+    <Content Include="Assets\plugins\angular-local-storage\.gitignore" />
+    <Content Include="Assets\plugins\angular-local-storage\demo\demo-app.js" />
+    <Content Include="Assets\plugins\angular-local-storage\demo\demo-style.css" />
+    <Content Include="Assets\plugins\angular-local-storage\demo\demo.html" />
+    <Content Include="Assets\plugins\angular-local-storage\dist\angular-local-storage.js" />
+    <Content Include="Assets\plugins\angular-local-storage\dist\angular-local-storage.min.js" />
+    <Content Include="Assets\plugins\angular-local-storage\index.js" />
     <Content Include="Assets\plugins\angular-ui-router\karma.conf.js" />
     <Content Include="Assets\plugins\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="Assets\plugins\angular-ui-router\release\angular-ui-router.min.js" />
@@ -356,6 +403,8 @@
     <Content Include="Assets\plugins\bootstrap\js\bootstrap.js" />
     <Content Include="Assets\plugins\bootstrap\js\bootstrap.min.js" />
     <Content Include="Assets\plugins\bootstrap\js\npm.js" />
+    <Content Include="Assets\plugins\checklist-model\checklist-model.js" />
+    <Content Include="Assets\plugins\checklist-model\LICENSE.txt" />
     <Content Include="Assets\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\plugins\ckeditor\ckeditor.js" />
     <Content Include="Assets\plugins\ckeditor\config.js" />
@@ -4069,6 +4118,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\client\" />
+    <Folder Include="Assets\plugins\checklist-model\test\" />
     <Folder Include="UploadFiles\" />
   </ItemGroup>
   <ItemGroup>
@@ -4186,18 +4236,50 @@
     <Content Include="Assets\plugins\ng-ckeditor\package.json" />
     <Content Include="Assets\plugins\ng-ckeditor\README.md" />
     <Content Include="Assets\plugins\ng-ckeditor\src\styles\ng-ckeditor.less" />
-    <Content Include="Assets\plugins\bootstrap\css\bootstrap.css.map" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Assets\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\plugins\angular-loading-bar\.bower.json" />
+    <Content Include="Assets\plugins\angular-loading-bar\bower.json" />
+    <Content Include="Assets\plugins\angular-loading-bar\CHANGELOG.md" />
+    <Content Include="Assets\plugins\angular-loading-bar\CONTRIBUTING.md" />
+    <Content Include="Assets\plugins\angular-loading-bar\ISSUE_TEMPLATE.md" />
+    <Content Include="Assets\plugins\angular-loading-bar\LICENSE" />
+    <Content Include="Assets\plugins\angular-loading-bar\package.json" />
+    <Content Include="Assets\plugins\angular-loading-bar\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Assets\plugins\angular-loading-bar\README.md" />
+    <Content Include="Assets\plugins\angular-local-storage\.bower.json" />
+    <Content Include="Assets\plugins\angular-local-storage\.bowerrc" />
+    <Content Include="Assets\plugins\angular-local-storage\.editorconfig" />
+    <Content Include="Assets\plugins\angular-local-storage\.travis.yml" />
+    <Content Include="Assets\plugins\angular-local-storage\bower.json" />
+    <Content Include="Assets\plugins\angular-local-storage\CHANGELOG.md" />
+    <Content Include="Assets\plugins\angular-local-storage\dist\angular-local-storage.min.js.map" />
+    <Content Include="Assets\plugins\angular-local-storage\LICENSE" />
+    <Content Include="Assets\plugins\angular-local-storage\package.json" />
+    <Content Include="Assets\plugins\angular-local-storage\README.md" />
+    <Content Include="Assets\plugins\checklist-model\.bower.json" />
+    <Content Include="Assets\plugins\checklist-model\bower.json" />
+    <Content Include="Assets\plugins\checklist-model\checklist-model.nuspec" />
+    <Content Include="Assets\plugins\checklist-model\package-lock.json" />
+    <Content Include="Assets\plugins\checklist-model\readme.md" />
+    <Content Include="Assets\plugins\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\tsd.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ONLINESHOP.Common\ONLINESHOP.Common.csproj">
@@ -4216,14 +4298,6 @@
       <Project>{61f3010c-5400-4cee-b686-51f1ee7fd56d}</Project>
       <Name>ONLINESHOP.Service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\angularjs\angular.d.ts" />
-    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Assets\plugins\ngBootbox\typings\tsd.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

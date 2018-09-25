@@ -104,6 +104,10 @@
     <Compile Include="Migrations\201809201716356_updateParent.Designer.cs">
       <DependentUpon>201809201716356_updateParent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809240545282_updateProducts.cs" />
+    <Compile Include="Migrations\201809240545282_updateProducts.Designer.cs">
+      <DependentUpon>201809240545282_updateProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ONLINESHOPDBCONTEXT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809201716356_updateParent.resx">
       <DependentUpon>201809201716356_updateParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809240545282_updateProducts.resx">
+      <DependentUpon>201809240545282_updateProducts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -30,13 +30,13 @@ namespace ONLINESHOP.Service
         void Save();
     }
 
-    public class ApplicationRoleService : IApplicationRoleService
+    public class ApplicationRoleRoleService : IApplicationRoleService
     {
         private IApplicationRoleRepository _appRoleRepository;
         private IApplicationRoleGroupRepository _appRoleGroupRepository;
         private IUnitOfWork _unitOfWork;
 
-        public ApplicationRoleService(IUnitOfWork unitOfWork,
+        public ApplicationRoleRoleService(IUnitOfWork unitOfWork,
             IApplicationRoleRepository appRoleRepository, IApplicationRoleGroupRepository appRoleGroupRepository)
         {
             this._appRoleRepository = appRoleRepository;
@@ -73,12 +73,10 @@ namespace ONLINESHOP.Service
 
         public IEnumerable<ApplicationRole> GetAll(int page, int pageSize, out int totalRow, string filter = null)
         {
-            var query = _appRoleRepository.GetAll();
-            if (!string.IsNullOrEmpty(filter))
-                query = query.Where(x => x.Description.Contains(filter));
-
-            totalRow = query.Count();
-            return query.OrderBy(x => x.Description).Skip(page * pageSize).Take(pageSize);
+            if (filter == null)
+                return _appRoleRepository.GetMultiPaging(null, out totalRow, page, pageSize);
+            return _appRoleRepository.GetMultiPaging(x => x.Description.Contains(filter), out totalRow, page, pageSize);
+           
         }
 
         public ApplicationRole GetDetail(string id)

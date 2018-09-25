@@ -14,6 +14,7 @@
         $scope.parentCategory = [];
         $scope.UpdateProduct = UpdateProduct;
         $scope.getSeoTitle = getSeoTitle;
+        $scope.moreImage = [];
         function getSeoTitle() {
 
             $scope.Product.Alias = commonService.getSeoTitle($scope.Product.Name);
@@ -26,7 +27,7 @@
         }
 
         function UpdateProduct() {
-
+            $scope.Product.MoreImages = JSON.stringify($scope.moreImage);
             apiService.put('/api/product/update', $scope.Product, dataLoadCompleted1, dataLoadFailed1);
         }
 
@@ -40,14 +41,15 @@
         function dataLoadCompleted(result) {
 
             $scope.parentCategory = result.data;
-
+        
+         
         }
         function dataLoadFailed(response) {
             console.log('load parent failed');
         }
 
         function dataLoadCompleted1(result) {
-
+          
             notificationService.displaySuccess(result.data.Name + ' đã update thành công');
             $state.go('products');
 
@@ -58,7 +60,7 @@
 
         function dataLoadCompleted2(result) {
             $scope.Product = result.data;
-
+            $scope.moreImage = JSON.parse($scope.Product.MoreImages);
 
         }
         function dataLoadFailed2(response) {
@@ -75,7 +77,26 @@
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
 
-                $scope.Product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.Product.Image = fileUrl;
+                });
+
+
+            };
+            finder.popup();
+        }
+
+        $scope.moreImage = [];
+
+
+        $scope.ChooseMoreImage = function () {
+
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImage.push(fileUrl);
+                });
+
 
             };
             finder.popup();

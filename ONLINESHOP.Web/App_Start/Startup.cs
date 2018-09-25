@@ -26,7 +26,7 @@ namespace ONLINESHOP.Web.App_Start
         {
             ConfigAutofac(app);
 
-           // ConfigureAuth(app);
+            ConfigureAuth(app);
         }
 
         private void ConfigAutofac(IAppBuilder app)
@@ -41,12 +41,12 @@ namespace ONLINESHOP.Web.App_Start
 
 
 
-            //Asp.net Identity
-            //builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
-            //builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
-            //builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
-            //builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
-            //builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
+           // Asp.net Identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
